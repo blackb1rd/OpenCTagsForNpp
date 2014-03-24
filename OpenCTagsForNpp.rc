@@ -1,0 +1,113 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Français (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICONV               ICON                    "res\\iconv.ico"
+IDI_ICONC               ICON                    "res\\iconc.ico"
+IDI_ICOND               ICON                    "res\\icond.ico"
+IDI_ICONE               ICON                    "res\\icone.ico"
+IDI_ICONF               ICON                    "res\\iconf.ico"
+IDI_ICONFF              ICON                    "res\\iconff.ico"
+IDI_ICONG               ICON                    "res\\icong.ico"
+IDI_ICONM               ICON                    "res\\iconm.ico"
+IDI_ICONP               ICON                    "res\\iconp.ico"
+IDI_ICONS               ICON                    "res\\icons.ico"
+IDI_ICONT               ICON                    "res\\icont.ico"
+IDI_ICONU               ICON                    "res\\iconu.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BMPICONS            BITMAP                  "res\\bmpicons.bmp"
+IDR_ICONS               BITMAP                  "res\\icons.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_ICONS TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_BUTTON40001
+    BUTTON      ID_BUTTON40002
+    BUTTON      ID_BUTTON40003
+    BUTTON      ID_BUTTON40004
+    BUTTON      ID_BUTTON40005
+    BUTTON      ID_BUTTON40006
+    BUTTON      ID_BUTTON40007
+    BUTTON      ID_BUTTON40008
+    BUTTON      ID_BUTTON40009
+    BUTTON      ID_BUTTON40011
+    BUTTON      ID_BUTTON40012
+    BUTTON      ID_BUTTON40013
+END
+
+#endif    // Français (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

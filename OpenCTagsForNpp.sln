@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCTagsForNpp", "OpenCTagsForNpp.vcproj", "{36151DB9-2077-4F73-89DD-26EB6CFE171B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Debug Unicode = Debug Unicode
+		Release = Release
+		Release Unicode = Release Unicode
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{36151DB9-2077-4F73-89DD-26EB6CFE171B}.Debug.ActiveCfg = Debug|Win32
+		{36151DB9-2077-4F73-89DD-26EB6CFE171B}.Debug.Build.0 = Debug|Win32
+		{36151DB9-2077-4F73-89DD-26EB6CFE171B}.Debug Unicode.ActiveCfg = Debug Unicode|Win32
+		{36151DB9-2077-4F73-89DD-26EB6CFE171B}.Debug Unicode.Build.0 = Debug Unicode|Win32
+		{36151DB9-2077-4F73-89DD-26EB6CFE171B}.Release.ActiveCfg = Release|Win32
+		{36151DB9-2077-4F73-89DD-26EB6CFE171B}.Release.Build.0 = Release|Win32
+		{36151DB9-2077-4F73-89DD-26EB6CFE171B}.Release Unicode.ActiveCfg = Release Unicode|Win32
+		{36151DB9-2077-4F73-89DD-26EB6CFE171B}.Release Unicode.Build.0 = Release Unicode|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
