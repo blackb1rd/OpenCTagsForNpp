@@ -110,7 +110,9 @@ int	OpenCTagsMain::AddAFIndex(octCFileIndex *pFIndex) {
 		m_pLstFileIndex = new octSLstFileIndex (pFIndex);
 		return 1;
 	}
-	for (octSLstFileIndex *pLstCurr = m_pLstFileIndex; pLstCurr->m_pNext; pLstCurr=pLstCurr->m_pNext);
+    octSLstFileIndex *pLstCurr = m_pLstFileIndex;
+	for (; pLstCurr->m_pNext; pLstCurr=pLstCurr->m_pNext)
+        ;
 	pLstCurr->m_pNext = new octSLstFileIndex(pFIndex);
 	return 1;
 }
@@ -142,7 +144,8 @@ char *OpenCTagsMain::GetTagsFilePath(const char *szCurPath) {
 	static char szTagPath[_MAX_PATH];
 	strcpy(szTagPath, szCurPath);
 	int nPath = (int)strlen(szCurPath);
-	for (char *pChar = szTagPath + nPath; pChar > szTagPath; pChar--) {
+    char *pChar = szTagPath + nPath;
+	for (; pChar > szTagPath; pChar--) {
 		if (*pChar == '\\' || *pChar =='/') {
 			*(pChar+1) = '\0';
 			strcat(szTagPath, "tags");

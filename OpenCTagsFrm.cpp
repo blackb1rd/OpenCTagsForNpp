@@ -203,7 +203,7 @@ LPARAM octListCtrl::GetItemData(int item) {
 
 int octListCtrl::GetIconIndex(char kind)
 {
-	char *pFound = strchr(cstKinds,kind);
+	const char *pFound = strchr(cstKinds,kind);
 	if (!pFound) return -1;
 	int index = (int)(pFound - cstKinds);
 
