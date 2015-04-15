@@ -46,17 +46,16 @@ void nexttag();
 void prevtag();
 void lancectags();
 
-BOOL APIENTRY DllMain( HINSTANCE hModule, 
-                       DWORD  reasonForCall, 
-                       LPVOID lpReserved
-					 )
+BOOL APIENTRY DllMain( HINSTANCE hModule,
+                       DWORD  reasonForCall,
+                       LPVOID lpReserved)
 {
 	ghDllInstance = hModule;
     switch (reasonForCall)
     {
-	  // Here we initialize the FuncItem Array.
-	  // AWARE : no need to initialize _cmdID field.
-	  // This filed will be initialized by Notepad++ plugins system
+			// Here we initialize the FuncItem Array.
+			// AWARE : no need to initialize _cmdID field.
+			// This filed will be initialized by Notepad++ plugins system
       case DLL_PROCESS_ATTACH:
 				funcItem[0]._pFunc = opentag;
 				funcItem[1]._pFunc = nexttag;
@@ -92,8 +91,8 @@ BOOL APIENTRY DllMain( HINSTANCE hModule,
 
 /*
  *--------------------------------------------------
- * The 4 extern functions are mandatory 
- * They will be called by Notepad++ plugins system 
+ * The 4 extern functions are mandatory
+ * They will be called by Notepad++ plugins system
  *--------------------------------------------------
 */
 
@@ -109,7 +108,7 @@ extern "C" __declspec(dllexport) const TCHAR * getName()
 	return PLUGIN_NAME;
 }
 
-// The getFuncsArray function gives Notepad++ plugins system the pointer FuncItem Array 
+// The getFuncsArray function gives Notepad++ plugins system the pointer FuncItem Array
 // and the size of this array (the number of functions)
 extern "C" __declspec(dllexport) FuncItem * getFuncsArray(int *nbF)
 {
@@ -121,24 +120,28 @@ extern "C" __declspec(dllexport) FuncItem * getFuncsArray(int *nbF)
 // just let it be empty.
 extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode)
 {
-static TCHAR szMessage[512];
+	static TCHAR szMessage[512];
 	if (!(theApp.m_pMainLW && IsWindow(theApp.m_pMainLW->m_hWnd))) return;
 	switch (notifyCode->nmhdr.code) {
 		case SCN_MODIFIED:
-			if ((notifyCode->modificationType & SC_MOD_INSERTTEXT || 
-					notifyCode->modificationType & SC_MOD_DELETETEXT) 
+			if ((notifyCode->modificationType & SC_MOD_INSERTTEXT
+					|| notifyCode->modificationType & SC_MOD_DELETETEXT)
 					&& notifyCode->linesAdded == 0
 					&& !theApp.m_pMainLW->m_bIsClosing) {
-_stprintf(szMessage, _T("SCN_MODIFIED avec mode = %x,length [%d], linesAdded [%d]\n"), notifyCode->modificationType,
-				notifyCode->length, notifyCode->linesAdded);
-OutputDebugString(szMessage);
-				theApp.m_pMainLW->SetListFromTag(theApp.m_pCurFIndex, getCurrentWord());
+
+						_stprintf(szMessage,
+											_T("SCN_MODIFIED avec mode = %x,length [%d], linesAdded [%d]\n"),
+											notifyCode->modificationType,
+											notifyCode->length, notifyCode->linesAdded);
+						OutputDebugString(szMessage);
+
+						theApp.m_pMainLW->SetListFromTag(theApp.m_pCurFIndex, getCurrentWord());
 			}
 		break;
 	}
 }
 
-// Here you can process the Npp Messages 
+// Here you can process the Npp Messages
 // I will make the messages accessible little by little, according to the need of plugin development.
 // Please let me know if you need to access to some messages :
 // http://sourceforge.net/forum/forum.php?forum_id=482781
@@ -178,7 +181,7 @@ void opentag()
 
 	POINT pt;
 	RECT rctScWnd, rctDesktop;
-	
+
 	int currPos = (int)::SendMessage(g_hSciCurrHandle, SCI_GETCURRENTPOS, 0, 0);
 
 	theApp.m_nLineNumber = (int)::SendMessage(g_hSciCurrHandle, SCI_LINEFROMPOSITION, (WPARAM)currPos, 0);

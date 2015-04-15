@@ -697,23 +697,23 @@ struct NotifyHeader {
 
 struct SCNotification {
 	struct NotifyHeader nmhdr;
-	int position;	// SCN_STYLENEEDED, SCN_MODIFIED, SCN_DWELLSTART, SCN_DWELLEND
-	int ch;		// SCN_CHARADDED, SCN_KEY
-	int modifiers;	// SCN_KEY
+	int position;					// SCN_STYLENEEDED, SCN_MODIFIED, SCN_DWELLSTART, SCN_DWELLEND
+	int ch;								// SCN_CHARADDED, SCN_KEY
+	int modifiers;				// SCN_KEY
 	int modificationType;	// SCN_MODIFIED
-	const char *text;	// SCN_MODIFIED
-	int length;		// SCN_MODIFIED
-	int linesAdded;	// SCN_MODIFIED
-	int message;	// SCN_MACRORECORD
-	uptr_t wParam;	// SCN_MACRORECORD
-	sptr_t lParam;	// SCN_MACRORECORD
-	int line;		// SCN_MODIFIED
-	int foldLevelNow;	// SCN_MODIFIED
-	int foldLevelPrev;	// SCN_MODIFIED
-	int margin;		// SCN_MARGINCLICK
-	int listType;	// SCN_USERLISTSELECTION
-	int x;			// SCN_DWELLSTART, SCN_DWELLEND
-	int y;		// SCN_DWELLSTART, SCN_DWELLEND
+	const char *text;			// SCN_MODIFIED
+	int length;						// SCN_MODIFIED
+	int linesAdded;				// SCN_MODIFIED
+	int message;					// SCN_MACRORECORD
+	uptr_t wParam;				// SCN_MACRORECORD
+	sptr_t lParam;				// SCN_MACRORECORD
+	int line;							// SCN_MODIFIED
+	int foldLevelNow;			// SCN_MODIFIED
+	int foldLevelPrev;		// SCN_MODIFIED
+	int margin;						// SCN_MARGINCLICK
+	int listType;					// SCN_USERLISTSELECTION
+	int x;								// SCN_DWELLSTART, SCN_DWELLEND
+	int y;								// SCN_DWELLSTART, SCN_DWELLEND
 };
 
 // Deprecation section listing all API features that are deprecated and will
@@ -721,7 +721,6 @@ struct SCNotification {
 // To enable these features define INCLUDE_DEPRECATED_FEATURES
 
 #ifdef INCLUDE_DEPRECATED_FEATURES
-
 #define SCI_SETCARETPOLICY 2369
 #define CARET_CENTER 0x02
 #define CARET_XEVEN 0x08
@@ -729,7 +728,6 @@ struct SCNotification {
 
 #define SCN_POSCHANGED 2012
 #define SCN_CHECKBRACE 2007
-
 #endif
 
 #endif

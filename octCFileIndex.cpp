@@ -44,17 +44,17 @@ int strreplace(char *AChaine, const char *AOld, const char *ARepl)
 		nCount++;
 		pStart = pTarget + nOldLen;
 	}
-		
+
 	if (nCount <= 0) {
 		return (nCount);
 	}
-	
+
 	LSource = (char *)malloc((nSourceLen + 1)*sizeof(char));
 	strcpy(LSource, AChaine);
 
 	nRetourLen =  nSourceLen + (nReplLen-nOldLen)*nCount;
 	memset(AChaine, 0, nRetourLen + 1);
-	
+
 	pStart = LSource;
 	pTargetRet = AChaine;
 
@@ -78,7 +78,7 @@ int strreplace(char *AChaine, const char *AOld, const char *ARepl)
 // Class octCCalls
 //////////////////////////////////////////////////////////////////////
 octCCalls::octCCalls() {
-	m_lstCalls = NULL; 
+	m_lstCalls = NULL;
 	m_pCurrCall = NULL;
 }
 octCCalls::~octCCalls() {
@@ -93,10 +93,10 @@ octCCalls::~octCCalls() {
 
 int octCCalls::insertCall(const char *pFileName, const int nLineNumber) {
 	if (m_pCurrCall &&
-			stricmp(pFileName, m_pCurrCall->pFileName) == 0 && 
+			stricmp(pFileName, m_pCurrCall->pFileName) == 0 &&
 			nLineNumber == m_pCurrCall->nLineNumber)
 		return 0;
-	
+
 	SOneCall *pNewCall = new SOneCall;
 	strcpy(pNewCall->pFileName, pFileName);
 	pNewCall->nLineNumber = nLineNumber;
@@ -325,7 +325,8 @@ struct octSAdresses {
 	char *padress;
 	char tadress; //n - line number; r - regular expression; c - comments
 };
-//External Function 
+
+//External Function
 int GetFileLineNumber(octSFileIndex *pSIndex, char * retFileName) {
 	struct octSAdresses lstAdresses[20];
 	int  nAdresses = 0;
@@ -392,18 +393,18 @@ int GetFileLineNumber(octSFileIndex *pSIndex, char * retFileName) {
 			} else {
 				strcpy(szAdress, lstAdresses[i].padress);
 			}
-			strreplace(szAdress, "\\/", "/");	
+			strreplace(szAdress, "\\/", "/");
 			//strreplace(szAdress, "(", "\\(");strreplace(szAdress, ")", "\\)");
 			for (;fgets(lineText, 1024, pFile); nLine++) {
-//Delete \r \n caracteres at the end of the line
-				for (nLen = strlen(lineText);nLen > 0 && strchr("\r\n", lineText[nLen-1]);nLen--) {
+				//Delete \r \n caracteres at the end of the line
+				for (nLen = strlen(lineText); nLen > 0 && strchr("\r\n", lineText[nLen-1]); nLen--) {
 					lineText[nLen-1]='\0';
 				}
-				
+
 /*				match_results::backref_type br = pat.match( lineText, results );
 				if (br.matched) {*/
 				if ((bFromStart && strcmp(szAdress, lineText)==0) ||
-					(!bFromStart && strstr(lineText, szAdress))) {
+						(!bFromStart && strstr(lineText, szAdress))) {
 					cLineNumber = nLine;
 					break;
 				}

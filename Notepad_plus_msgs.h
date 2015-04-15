@@ -34,7 +34,7 @@ enum winVer{WV_UNKNOWN, WV_WIN32S, WV_95, WV_98, WV_ME, WV_NT, WV_W2K, WV_XP, WV
 
 //#include "deprecatedSymbols.h"
 
-//Here you can find how to use these messages : http://notepad-plus.sourceforge.net/uk/plugins-HOWTO.php 
+//Here you can find how to use these messages : http://notepad-plus.sourceforge.net/uk/plugins-HOWTO.php
 #define NPPMSG  (WM_USER + 1000)
 
 	#define NPPM_GETCURRENTSCINTILLA  (NPPMSG + 4)
@@ -66,7 +66,7 @@ enum winVer{WV_UNKNOWN, WV_WIN32S, WV_95, WV_98, WV_ME, WV_NT, WV_W2K, WV_XP, WV
 
 	#define NPPM_GETOPENFILENAMESPRIMARY (NPPMSG + 17)
 	#define NPPM_GETOPENFILENAMESSECOND (NPPMSG + 18)
-	
+
 	#define NPPM_CREATESCINTILLAHANDLE (NPPMSG + 20)
 	#define NPPM_DESTROYSCINTILLAHANDLE (NPPMSG + 21)
 	#define NPPM_GETNBUSERLANG (NPPMSG + 22)
@@ -90,7 +90,7 @@ enum winVer{WV_UNKNOWN, WV_WIN32S, WV_95, WV_98, WV_ME, WV_NT, WV_W2K, WV_XP, WV
 	//ascii file to unicode
 	//int NPPM_ENCODESCI(MAIN_VIEW/SUB_VIEW, 0)
 	//return new unicodeMode
-	
+
 	#define NPPM_DECODESCI (NPPMSG + 27)
 	//unicode file to ascii
 	//int NPPM_DECODESCI(MAIN_VIEW/SUB_VIEW, 0)
@@ -145,7 +145,7 @@ enum winVer{WV_UNKNOWN, WV_WIN32S, WV_95, WV_98, WV_ME, WV_NT, WV_W2K, WV_XP, WV
 	//HWND WM_DMM_GETPLUGINHWNDBYNAME(const TCHAR *windowName, const TCHAR *moduleName)
 	// if moduleName is NULL, then return value is NULL
 	// if windowName is NULL, then the first found window handle which matches with the moduleName will be returned
-	
+
 	#define NPPM_MAKECURRENTBUFFERDIRTY (NPPMSG + 44)
 	//BOOL NPPM_MAKECURRENTBUFFERDIRTY(0, 0)
 
@@ -170,13 +170,13 @@ enum winVer{WV_UNKNOWN, WV_WIN32S, WV_95, WV_98, WV_ME, WV_NT, WV_W2K, WV_XP, WV
 	// uncomment //#include "menuCmdID.h"
 	// in the beginning of this file then use the command symbols defined in "menuCmdID.h" file
 	// to access all the Notepad++ menu command items
-	
+
 	#define NPPM_TRIGGERTABBARCONTEXTMENU (NPPMSG + 49)
 	//void NPPM_TRIGGERTABBARCONTEXTMENU(int view, int index2Activate)
 
 	#define NPPM_GETNPPVERSION (NPPMSG + 50)
 	// int NPPM_GETNPPVERSION(0, 0)
-	// return version 
+	// return version
 	// ex : v4.6
 	// HIWORD(version) == 4
 	// LOWORD(version) == 6
@@ -195,14 +195,14 @@ enum winVer{WV_UNKNOWN, WV_WIN32S, WV_95, WV_98, WV_ME, WV_NT, WV_W2K, WV_XP, WV
 	// INT NPPM_GETPOSFROMBUFFERID(INT bufferID, 0)
 	// Return VIEW|INDEX from a buffer ID. -1 if the bufferID non existing
 	//
-	// VIEW takes 2 highest bits and INDEX (0 based) takes the rest (30 bits) 
+	// VIEW takes 2 highest bits and INDEX (0 based) takes the rest (30 bits)
 	// Here's the values for the view :
 	//  MAIN_VIEW 0
 	//  SUB_VIEW  1
 
 	#define NPPM_GETFULLPATHFROMBUFFERID (NPPMSG + 58)
 	// INT NPPM_GETFULLPATHFROMBUFFERID(INT bufferID, TCHAR *fullFilePath)
-	// Get full path file name from a bufferID. 
+	// Get full path file name from a bufferID.
 	// Return -1 if the bufferID non existing, otherwise the number of TCHAR copied/to copy
 	// User should call it with fullFilePath be NULL to get the number of TCHAR (not including the nul character),
 	// allocate fullFilePath with the return values + 1, then call it again to get  full path file name
@@ -329,7 +329,7 @@ enum winVer{WV_UNKNOWN, WV_WIN32S, WV_95, WV_98, WV_ME, WV_NT, WV_W2K, WV_XP, WV
 	// INT NPPM_GETCURRENTCOLUMN(0, 0)
 	// return the caret current position column
 
-		
+
 		#define VAR_NOT_RECOGNIZED 0
 		#define FULL_CURRENT_PATH 1
 		#define CURRENT_DIRECTORY 2
@@ -373,12 +373,12 @@ enum winVer{WV_UNKNOWN, WV_WIN32S, WV_95, WV_98, WV_ME, WV_NT, WV_W2K, WV_XP, WV
 	//scnNotification->nmhdr.code = NPPN_FILEBEFOREOPEN;
 	//scnNotification->nmhdr.hwndFrom = hwndNpp;
 	//scnNotification->nmhdr.idFrom = BufferID;
-	
+
 	#define NPPN_FILEBEFORESAVE (NPPN_FIRST + 7) // To notify plugins that the current file is about to be saved
 	//scnNotification->nmhdr.code = NPPN_FILEBEFOREOPEN;
 	//scnNotification->nmhdr.hwndFrom = hwndNpp;
 	//scnNotification->nmhdr.idFrom = BufferID;
-	
+
 	#define NPPN_FILESAVED (NPPN_FIRST + 8) // To notify plugins that the current file is just saved
 	//scnNotification->nmhdr.code = NPPN_FILECLOSED;
 	//scnNotification->nmhdr.hwndFrom = hwndNpp;

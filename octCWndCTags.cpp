@@ -49,21 +49,21 @@ VOID CALLBACK CTagsTimerProc( HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTi
 
 	DWORD dwRet;
 	GetExitCodeProcess(theApp.m_CTagsWnd.m_shEx.hProcess, &dwRet);
-	
+
 	if (dwRet != STILL_ACTIVE) {
 		static TCHAR szTagsFile[_MAX_PATH], szTagsNewFile[_MAX_PATH];
 		_stprintf(szTagsFile, _T("%hS\\%s"), theApp.m_CTagsWnd.m_szDirectory, _T("tags"));
 		_stprintf(szTagsNewFile, _T("%hS\\%s"), theApp.m_CTagsWnd.m_szDirectory, _T("tags.new"));
 		SendMessage(theApp.m_CTagsWnd.m_hWnd, WM_CLOSE, 0, 0);
 		memset(&theApp.m_CTagsWnd.m_shEx, 0, sizeof(SHELLEXECUTEINFO));
-	
+
 		if (theApp.m_CTagsWnd.m_ctState == isRunning) {
 			theApp.m_CTagsWnd.m_ctState = isFinished;
 			DeleteFile(szTagsFile);
 			MoveFile(szTagsNewFile, szTagsFile);
 		} else {
 			DeleteFile(szTagsNewFile);
-		} 
+		}
 	}
 }
 
@@ -86,16 +86,16 @@ HWND octCWndCTags::Create(const char *szDir) {
 	strcpy(m_szDirectory, szDir);
 
 	WNDCLASS wndclass;
-  wndclass.style          = CS_HREDRAW|CS_VREDRAW;
-  wndclass.lpfnWndProc    = CTagsWndProc;
-  wndclass.cbClsExtra     = 0;
-  wndclass.cbWndExtra     = 0;
-  wndclass.hInstance      = ghDllInstance;
-  wndclass.hIcon          = NULL;
-  wndclass.hCursor        = LoadCursor (NULL, IDC_ARROW);
-  wndclass.hbrBackground  = (HBRUSH)GetStockObject (WHITE_BRUSH);
-  wndclass.lpszMenuName   = NULL;
-  wndclass.lpszClassName  = TEXT(CLASS_CTAGSWND);
+	wndclass.style          = CS_HREDRAW|CS_VREDRAW;
+	wndclass.lpfnWndProc    = CTagsWndProc;
+	wndclass.cbClsExtra     = 0;
+	wndclass.cbWndExtra     = 0;
+	wndclass.hInstance      = ghDllInstance;
+	wndclass.hIcon          = NULL;
+	wndclass.hCursor        = LoadCursor (NULL, IDC_ARROW);
+	wndclass.hbrBackground  = (HBRUSH)GetStockObject (WHITE_BRUSH);
+	wndclass.lpszMenuName   = NULL;
+	wndclass.lpszClassName  = TEXT(CLASS_CTAGSWND);
 
 	RegisterClass(&wndclass);
 
@@ -104,12 +104,13 @@ HWND octCWndCTags::Create(const char *szDir) {
 	GetClientRect(g_hSciCurrHandle, &rcCl);
 	int nWidth = rcCl.right - rcCl.left;
 	if (nWidth > 500) nWidth = 500;
+
 /*	pt.x = (LONG)::SendMessage(g_hSciCurrHandle, SCI_POINTXFROMPOSITION, 0, (LPARAM)currPos);
 	pt.y = (LONG)::SendMessage(g_hSciCurrHandle, SCI_POINTYFROMPOSITION, 0, (LPARAM)currPos);*/
 
 	return CreateWindow(
-			wndclass.lpszClassName, 
-			_T("CTags For OpenCTagsNpp"), 
+			wndclass.lpszClassName,
+			_T("CTags For OpenCTagsNpp"),
 			WS_POPUP | WS_VISIBLE,
 			rc.left + rcCl.right - nWidth,
 			rc.top + rcCl.bottom-rcCl.top-18,
@@ -120,9 +121,8 @@ HWND octCWndCTags::Create(const char *szDir) {
 			ghDllInstance,
 			NULL
 	);
-
-
 }
+
 int octCWndCTags::OnCreateWnd(HWND hWnd)
 {
 	m_hWnd = hWnd;
@@ -157,22 +157,22 @@ int octCWndCTags::OnCreateWnd(HWND hWnd)
 		return 0;
 	}
 	m_ctState = isRunning;
-	
+
 	_stprintf(szFileTags, _T("%hS\\%s"), szDirectory, _T("tags"));
 	_stprintf(szFileTagsNew, _T("%hS\\%s"), szDirectory, _T("tags.new"));
 	CopyFile(szFileTags, szFileTagsNew, FALSE);
-	
+
 	RECT rc;
 	GetClientRect(hWnd, &rc);
 	InitCommonControls();
-	m_hWndPB = CreateWindowEx(0, PROGRESS_CLASS, _T("Progress Bar"), 
-			WS_CHILD|WS_VISIBLE, 0, 0, 
-			rc.right - rc.left - 50, rc.bottom - rc.top, m_hWnd, 
+	m_hWndPB = CreateWindowEx(0, PROGRESS_CLASS, _T("Progress Bar"),
+			WS_CHILD|WS_VISIBLE, 0, 0,
+			rc.right - rc.left - 50, rc.bottom - rc.top, m_hWnd,
 			NULL, ghDllInstance, NULL);
-	
-	m_hWndBt = CreateWindowEx(0, _T("BUTTON"), _T("Cancel"), 
-			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_TEXT, rc.right - 50, 0, 
-			50, rc.bottom - rc.top, m_hWnd, 
+
+	m_hWndBt = CreateWindowEx(0, _T("BUTTON"), _T("Cancel"),
+			WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_TEXT, rc.right - 50, 0,
+			50, rc.bottom - rc.top, m_hWnd,
 			NULL, ghDllInstance, NULL);
 
 /*	HFONT hFont = (HFONT)GetStockObject(SYSTEM_FONT);//(HFONT)SendMessage(hWndBtn, WM_GETFONT, 0, 0);

@@ -1,11 +1,11 @@
 /////////////////////////////////////////////////////////////////////////////
 // Name:        OpenCTagsFrm.h
-// Purpose:     
-// Author:      
-// Modified by: 
-// Created:     
-// RCS-ID:      
-// Copyright:   (C)2005 
+// Purpose:
+// Author:
+// Modified by:
+// Created:
+// RCS-ID:
+// Copyright:   (C)2005
 // Licence:     wxWindows
 // Generated with wxWinWizard by KoanSoftware.com
 /////////////////////////////////////////////////////////////////////////////
@@ -21,9 +21,9 @@ class octSLstFileIndex {
 public:
 	octSLstFileIndex(octCFileIndex *pFIndex) {m_pCFileIndex = pFIndex; m_pNext = NULL;}
 	~octSLstFileIndex() {
-		if (m_pCFileIndex) delete m_pCFileIndex; 
+		if (m_pCFileIndex) delete m_pCFileIndex;
 	}
-	
+
 	octCFileIndex *m_pCFileIndex;
 	octSLstFileIndex *m_pNext;
 };
@@ -31,21 +31,24 @@ public:
 class octListCtrl  {
 public :
 	octListCtrl ();
-//ListView Layer
+
+	//ListView Layer
 	int Create(POINT pt);
 	int CreateListView(HWND hwndParent);
 	LPARAM GetItemData(int item);
 	HWND GetHWnd() {return m_hWnd;}
 	int GetIconIndex(char kind);
-//Specific
+
+	//Specific
 	void OpenOneTag(octSFileIndex *pSIndex);
 	int SetListFromTag(octCFileIndex *pFIndex, char * szTag);
-// event handlers (these functions should _not_ be virtual)
+
+	// event handlers (these functions should _not_ be virtual)
 	void OnKeyDown(int keyCode);
 	void OnKillFocus();
 	void OnDclick();
-//variables 
 
+	//variables
 	WNDPROC m_oldWP;
 	HWND m_hWndParent;
 	HWND m_hWnd;
@@ -54,6 +57,4 @@ public :
 	bool m_bOneTagOpened;
 private:
 };
-
-
 #endif // OpenCTagsFrame_H

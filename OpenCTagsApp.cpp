@@ -1,11 +1,11 @@
 /////////////////////////////////////////////////////////////////////////////
 // Name:        OpenCTagsMain.cpp
-// Purpose:     
-// Author:      
-// Modified by: 
-// Created:     
-// RCS-ID:      
-// Copyright:   (C)2005 
+// Purpose:
+// Author:
+// Modified by:
+// Created:
+// RCS-ID:
+// Copyright:   (C)2005
 // Licence:     wxWindows
 // Generated with wxWinWizard by KoanSoftware.com
 /////////////////////////////////////////////////////////////////////////////
@@ -55,7 +55,7 @@ bool OpenCTagsMain::OnInit(char *szTag, char *szCurPath, POINT pt)
 
 	if (!SetCurFIndex(szCurPath)) {
 		TCHAR szMessage[_MAX_PATH+256];
-		_stprintf(szMessage, _T("'tags' file not found on path %hS.\n") 
+		_stprintf(szMessage, _T("'tags' file not found on path %hS.\n")
 			_T("Launch the CTags command and choose to save a 'tags' file in a parent directory of the current file path"), szCurPath);
 		::MessageBox(nppData._nppHandle, szMessage, _T("OpenCTagsForNpp"), MB_ICONEXCLAMATION);
 		return (true);
@@ -67,7 +67,7 @@ bool OpenCTagsMain::OnInit(char *szTag, char *szCurPath, POINT pt)
 	ShowWindow(m_pMainLW->m_hWndParent, SW_SHOW);
 	UpdateWindow(m_pMainLW->m_hWndParent);
 	SetFocus(m_pMainLW->m_hWnd);
-    
+
 	return (true);
 }
 
@@ -154,7 +154,7 @@ char *OpenCTagsMain::GetTagsFilePath(const char *szCurPath) {
 		}
 	}
 	if (pChar <= szTagPath) {
-WriteLogMessage("Could not find tags file in directory [%s] or in a parent directory\n", szCurPath);
+		WriteLogMessage("Could not find tags file in directory [%s] or in a parent directory\n", szCurPath);
 		return (NULL);
 	}
 	return szTagPath;
@@ -167,7 +167,7 @@ octCFileIndex * OpenCTagsMain::SetCurFIndex(const char *szCurPath)
 	if (!szTagPath) return NULL;
 
 	m_pCurFIndex = NULL;
-WriteLogMessage("Will use the file [%s]\n", szTagPath);
+	WriteLogMessage("Will use the file [%s]\n", szTagPath);
 	m_pCurFIndex = FindFIndexForFile(szTagPath);
 	if (!m_pCurFIndex) {
 		m_pCurFIndex = new octCFileIndex();
@@ -178,10 +178,10 @@ WriteLogMessage("Will use the file [%s]\n", szTagPath);
 			m_pCurFIndex = NULL;
 			return NULL;
 		}
-WriteLogMessage("Tag file opened succesfully\n");
+		WriteLogMessage("Tag file opened succesfully\n");
 		AddAFIndex(m_pCurFIndex);
 	} else {
-WriteLogMessage("Tag file already opened\n");
+		WriteLogMessage("Tag file already opened\n");
 	}
 
 	return (m_pCurFIndex);
@@ -276,6 +276,7 @@ int OpenCTagsMain::lancectags(void) {
 			return 0;
 		}
 	}
+
 	int nLen = (int)strlen(szTagsPath);
 	for (int i = nLen-1; i>=0;i--) {
 		if (szTagsPath[i]=='\\' ||szTagsPath[i]=='/') {

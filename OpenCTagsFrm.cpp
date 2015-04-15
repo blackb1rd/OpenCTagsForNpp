@@ -1,11 +1,11 @@
 /////////////////////////////////////////////////////////////////////////////
 // Name:        OpenCTagsFrm.cpp
-// Purpose:     
-// Author:      
-// Modified by: 
-// Created:     
-// RCS-ID:      
-// Copyright:   (C)2005 
+// Purpose:
+// Author:
+// Modified by:
+// Created:
+// RCS-ID:
+// Copyright:   (C)2005
 // Licence:     wxWindows
 // Generated with wxWinWizard by KoanSoftware.com
 /////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ LRESULT APIENTRY LViewWndProc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 				}
 			}
 	}
-//	CallWindowProc(theApp.m_pMainLW->m_oldWP, hwnd, uMsg, wParam, lParam);
+	// CallWindowProc(theApp.m_pMainLW->m_oldWP, hwnd, uMsg, wParam, lParam);
 	return DefWindowProc(hwnd,uMsg, wParam, lParam);
 }
 
@@ -113,52 +113,52 @@ octListCtrl::octListCtrl () {
 int octListCtrl::Create(POINT pt) {
 	INITCOMMONCONTROLSEX icex;
 
-// Ensure that the common control DLL is loaded. 
+// Ensure that the common control DLL is loaded.
 
 	icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
 	icex.dwICC  = ICC_LISTVIEW_CLASSES;
-	InitCommonControlsEx(&icex); 
-	
-	WNDCLASS       wndclass;
-  wndclass.style          = CS_HREDRAW|CS_VREDRAW;
-  wndclass.lpfnWndProc    = LViewWndProc;
-  wndclass.cbClsExtra     = 0;
-  wndclass.cbWndExtra     = 0;
-  wndclass.hInstance      = ghDllInstance;
-  wndclass.hIcon          = NULL;
-  wndclass.hCursor        = LoadCursor (NULL, IDC_ARROW);
-  wndclass.hbrBackground  = (HBRUSH)GetStockObject (WHITE_BRUSH);
-  wndclass.lpszMenuName   = NULL;
-  wndclass.lpszClassName  = TEXT("OpenCTagsNPP");
+	InitCommonControlsEx(&icex);
 
-  RegisterClass (&wndclass);
+	WNDCLASS       wndclass;
+	wndclass.style          = CS_HREDRAW|CS_VREDRAW;
+	wndclass.lpfnWndProc    = LViewWndProc;
+	wndclass.cbClsExtra     = 0;
+	wndclass.cbWndExtra     = 0;
+	wndclass.hInstance      = ghDllInstance;
+	wndclass.hIcon          = NULL;
+	wndclass.hCursor        = LoadCursor (NULL, IDC_ARROW);
+	wndclass.hbrBackground  = (HBRUSH)GetStockObject (WHITE_BRUSH);
+	wndclass.lpszMenuName   = NULL;
+	wndclass.lpszClassName  = TEXT("OpenCTagsNPP");
+
+	RegisterClass (&wndclass);
 
 	m_hWndParent = CreateWindow(wndclass.lpszClassName,
-                TEXT("OpenCTags for Notepad++"),
-                WS_POPUP,
-                pt.x,
-                pt.y,
-                OPENCTAGS_WIDTH,
-                OPENCTAGS_HEIGHT,
-                g_hSciCurrHandle,
-                NULL,
-                ghDllInstance,
-                NULL);
+															TEXT("OpenCTags for Notepad++"),
+															WS_POPUP,
+															pt.x,
+															pt.y,
+															OPENCTAGS_WIDTH,
+															OPENCTAGS_HEIGHT,
+															g_hSciCurrHandle,
+															NULL,
+															ghDllInstance,
+															NULL);
 
-//	::SendMessage(g_hSciCurrHandle, SCI_BEGINUNDOACTION, 0, 0);
+	// ::SendMessage(g_hSciCurrHandle, SCI_BEGINUNDOACTION, 0, 0);
 	return m_hWndParent ? 1 : 0;
 }
-// Create the list-view window in report view with label 
+// Create the list-view window in report view with label
 // editing enabled.
 int octListCtrl::CreateListView(HWND hwndParent) {
-//	GetClientRect (hWndParent, &rcl); 
+//	GetClientRect (hWndParent, &rcl);
 	DWORD dwErr;
 	RECT rct;
 	GetClientRect(hwndParent, &rct);
-	m_hWnd = CreateWindow ( WC_LISTVIEW, TEXT("OpenCTags ListView"), 
-        WS_CHILD | LVS_REPORT | LVS_SINGLESEL |LVS_NOCOLUMNHEADER |WS_VISIBLE|WS_BORDER, 
-        0, 0, rct.right - rct.left, rct.bottom - rct.top, 
-        hwndParent, NULL, ghDllInstance, NULL);
+	m_hWnd = CreateWindow ( WC_LISTVIEW, TEXT("OpenCTags ListView"),
+													WS_CHILD | LVS_REPORT | LVS_SINGLESEL |LVS_NOCOLUMNHEADER |WS_VISIBLE|WS_BORDER,
+													0, 0, rct.right - rct.left, rct.bottom - rct.top,
+													hwndParent, NULL, ghDllInstance, NULL);
 	if (!m_hWnd) {
 		dwErr = GetLastError();
 		return 0;
@@ -182,7 +182,15 @@ int octListCtrl::CreateListView(HWND hwndParent) {
 	_tcscpy(szText,_T("File"));
 	lvcol.iSubItem = 2;
 	dwErr = ListView_InsertColumn(m_hWnd, 2, &lvcol);
-	HIMAGELIST hImgList = ImageList_LoadImage(ghDllInstance, MAKEINTRESOURCE(IDR_ICONS),16,0,CLR_DEFAULT,IMAGE_BITMAP,LR_DEFAULTCOLOR);
+
+	HIMAGELIST hImgList = ImageList_LoadImage(ghDllInstance,
+																						MAKEINTRESOURCE(IDR_ICONS),
+																						16,
+																						0,
+																						CLR_DEFAULT,
+																						IMAGE_BITMAP,
+																						LR_DEFAULTCOLOR);
+
 	int nImC = ImageList_GetImageCount(hImgList);
 	if (!ListView_SetImageList(m_hWnd, hImgList, LVSIL_SMALL)) {
 		dwErr = GetLastError();
@@ -229,11 +237,11 @@ int octListCtrl::SetListFromTag(octCFileIndex *pFIndex, char * szTag) {
 		memset(&lvItem, 0, sizeof(LVITEM));
 		lvItem.pszText = szText;
 		nItems = 0;
-		
+
 		szFirstLetter[0] = szTag[0]; szFirstLetter[1] = '\0';
-		
-		for (octSFileIndex *pSIndex = pFIndex->findFirstTag(szFirstLetter); 
-				pSIndex; 
+
+		for (octSFileIndex *pSIndex = pFIndex->findFirstTag(szFirstLetter);
+				pSIndex;
 				pSIndex = pFIndex->findNextTag() ) {
 
 			lvItem.mask = LVIF_IMAGE | LVIF_TEXT | LVIF_PARAM | LVIF_STATE;
@@ -244,7 +252,7 @@ int octListCtrl::SetListFromTag(octCFileIndex *pFIndex, char * szTag) {
 			lvItem.lParam = (LPARAM)pSIndex;
 			lvItem.iItem = ListView_InsertItem(m_hWnd, &lvItem);
 			DWORD dwError = GetLastError();
-	//Strings having /^function any()$/;" must be displayed as function any()		
+			// Strings having /^function any()$/;" must be displayed as function any()
 			char *strAdress = strdup(pSIndex->padress);
 			int iDeb=0, iLen=(int)strlen(strAdress);
 			if (iLen > 0 && strAdress[0] == '/') iDeb++;
@@ -256,7 +264,7 @@ int octListCtrl::SetListFromTag(octCFileIndex *pFIndex, char * szTag) {
 			strcpy(strAdress,pSIndex->padress+iDeb);
 			strAdress[iLen-iDeb] = '\0';
 			lvItem.mask = LVIF_TEXT;
-			
+
 			lvItem.iSubItem = 1;
 			mbstowcs(lvItem.pszText, strAdress, LV_SZMAX-1);
 			ListView_SetItem(m_hWnd, &lvItem);
@@ -279,8 +287,8 @@ int octListCtrl::SetListFromTag(octCFileIndex *pFIndex, char * szTag) {
 		octSFileIndex * pSFirstDansListe = (octSFileIndex *)GetItemData(0), * pSIndex = pFIndex->findFirstTag(szTag);
 		int itemSelected = 0;
 		if (pSIndex && pSIndex->nIndex >= pSFirstDansListe->nIndex &&
-				(itemSelected = pSIndex->nIndex - pSFirstDansListe->nIndex) < nItems ) {
-			
+				(itemSelected = pSIndex->nIndex - pSFirstDansListe->nIndex) < nItems) {
+
 			ListView_SetItemState(m_hWnd, itemSelected, LVIS_FOCUSED | LVIS_SELECTED, LVIS_FOCUSED | LVIS_SELECTED);
 			ListView_EnsureVisible(m_hWnd, itemSelected, FALSE);
 		} else {
@@ -307,7 +315,7 @@ void octListCtrl::OpenOneTag(octSFileIndex *pSIndex) {
 
 void octListCtrl::OnDclick() {
 	long itemSel = -1;
-	itemSel = ListView_GetNextItem(m_hWnd, itemSel, LVNI_SELECTED); 
+	itemSel = ListView_GetNextItem(m_hWnd, itemSel, LVNI_SELECTED);
 	if (itemSel == -1) return;
 
 	octSFileIndex *pSIndex = (octSFileIndex *)GetItemData(itemSel);
@@ -318,7 +326,7 @@ void octListCtrl::OnDclick() {
 void octListCtrl::OnKeyDown(int keyCode) {
 	if (keyCode == VK_TAB || keyCode == VK_SPACE || keyCode == VK_RETURN) {
 		long itemSel = -1;
-		itemSel = ListView_GetNextItem(m_hWnd, itemSel, LVNI_SELECTED); 
+		itemSel = ListView_GetNextItem(m_hWnd, itemSel, LVNI_SELECTED);
 		if (itemSel == -1) return;
 
 		octSFileIndex *pSIndex = (octSFileIndex *)GetItemData(itemSel);

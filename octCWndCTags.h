@@ -30,6 +30,6 @@ public:
 
 	char m_szDirectory[_MAX_PATH];
 	SHELLEXECUTEINFO m_shEx;
-	
+
 	enum SCTagsState m_ctState;
 };

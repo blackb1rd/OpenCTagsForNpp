@@ -1,11 +1,11 @@
 /////////////////////////////////////////////////////////////////////////////
 // Name:        OpenCTagsApp.h
-// Purpose:     
-// Author:      
-// Modified by: 
-// Created:     
-// RCS-ID:      
-// Copyright:   (C)2005 
+// Purpose:
+// Author:
+// Modified by:
+// Created:
+// RCS-ID:
+// Copyright:   (C)2005
 // Licence:     wxWindows
 // Generated with wxWinWizard by KoanSoftware.com
 /////////////////////////////////////////////////////////////////////////////
@@ -28,7 +28,7 @@ int GoToFileLine(const char *pFilePath, int nLineNumber);
 #define OPENCTAGS_POSX 30
 
 // Define a new application type, each program should derive a class from wxApp
-class OpenCTagsMain 
+class OpenCTagsMain
 {
 public:
     OpenCTagsMain();

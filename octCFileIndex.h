@@ -34,7 +34,7 @@ class octCCalls {
 public:
 	octCCalls();
 	~octCCalls();
-	
+
 	struct SOneCall * m_lstCalls;
 	struct SOneCall * m_pCurrCall;
 
@@ -43,7 +43,7 @@ public:
 	SOneCall * getNextCall();
 };
 
-class octCFileIndex  
+class octCFileIndex
 {
 public:
 	octCFileIndex();
@@ -53,12 +53,12 @@ public:
 	int createFromText(char * pTexte = NULL);
 	int addLine(char *&pLine);
 	int tabFound(char *&pNextChar);
-	
+
 	struct octSFileIndex * findExactTag(const char *szTag);
 	struct octSFileIndex * findFirstTag(const char *szTag);
 	struct octSFileIndex * findNextTag();
 	struct octSFileIndex ** findAllForTag(const char *szTag, int &nbFound);
-	
+
 	char m_szFileName[_MAX_PATH];
 	int  m_nLines;
 	int  m_nBlocks;
